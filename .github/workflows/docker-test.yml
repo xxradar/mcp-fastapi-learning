@@ -62,6 +62,13 @@ jobs:
         docker run -d -p 8000:8000 --name app-container xxradar/app:test
         # Wait for the container to start
         sleep 5
+        # Check if the container is running
+        if [ "$(docker ps -q -f name=app-container)" ]; then
+          echo "Container is running"
+        else
+          echo "Failed to start container"
+          exit 1
+        fi
         
     - name: Test root endpoint
       run: |
