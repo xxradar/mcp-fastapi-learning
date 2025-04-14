@@ -37,12 +37,17 @@ jobs:
         platforms: linux/amd64,linux/arm64
         cache-from: type=gha
         cache-to: type=gha,mode=max
-    
+        build-args: VERBOSE=true
+
+    # Verify that the Docker image was built successfully
+    - name: Verify Docker Image Build
+      run: docker images | grep xxradar/app
+
     - name: Save Docker image as tar
       run: |
         mkdir -p image-artifact
         docker save xxradar/app:test > image-artifact/app-image.tar
-        
+
     - name: Upload Docker image as artifact
       uses: actions/upload-artifact@v4
       with:
