@@ -2,6 +2,10 @@ from fastapi import FastAPI, HTTPException
 import os
 from openai import OpenAI
 from typing import Optional
+from fastapi import FastAPI
+from fastapi_mcp import FastApiMCP
+
+
 
 app = FastAPI(
     title="Hello World API",
@@ -9,6 +13,15 @@ app = FastAPI(
     version="0.1.0"
 )
 
+
+mcp = FastApiMCP(
+    app,
+    name="My API MCP",
+    description="My API description",
+    base_url="http://localhost:8000",
+)
+
+mcp.mount()
 
 @app.get("/")
 async def root():
@@ -48,6 +61,7 @@ async def openai_completion(prompt: Optional[str] = "Say hello world from AI!"):
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error from OpenAI API: {str(e)}")
 
+mcp.setup_server()
 
 if __name__ == "__main__":
     import uvicorn
