@@ -1,4 +1,4 @@
-# FastAPI Hello World Application 
+# FastAPI Hello World Application
 
 A simple Hello World API built with FastAPI and MCP SSE support.
 
