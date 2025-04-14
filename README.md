@@ -1,6 +1,6 @@
 # FastAPI Hello World Application
 
-A simple Hello World API built with FastAPI.
+A simple Hello World API built with FastAPI and MCP SSE support.
 
 ## Features
 
@@ -129,6 +129,11 @@ curl http://127.0.0.1:8000/openai
 
 # Get OpenAI chat completion with custom prompt
 curl "http://127.0.0.1:8000/openai?prompt=Tell%20me%20a%20joke%20about%20programming"
+```
+### Using MCP
+Connect to MCP Inspector
+```
+npx @modelcontextprotocol/inspector
 ```
 
 ### Using a web browser
