@@ -36,7 +36,7 @@ jobs:
     - name: Save Docker image as tar
       run: |
         mkdir -p image-artifact
-        docker save app:test > image-artifact/app-image.tar
+        docker save xxradar/app:test > image-artifact/app-image.tar
         
     - name: Upload Docker image as artifact
       uses: actions/upload-artifact@v4
@@ -47,7 +47,7 @@ jobs:
         
     - name: Run Docker container
       run: |
-        docker run -d -p 8000:8000 --name app-container app:test
+        docker run -d -p 8000:8000 --name app-container xxradar/app:test
         # Wait for the container to start
         sleep 5
         
